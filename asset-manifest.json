@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.css": "/fireblight-research-map/static/css/main.8a002164.chunk.css",
-    "main.js": "/fireblight-research-map/static/js/main.e517d880.chunk.js",
-    "main.js.map": "/fireblight-research-map/static/js/main.e517d880.chunk.js.map",
+    "main.css": "/fireblight-research-map/static/css/main.b32b557d.chunk.css",
+    "main.js": "/fireblight-research-map/static/js/main.c3de4862.chunk.js",
+    "main.js.map": "/fireblight-research-map/static/js/main.c3de4862.chunk.js.map",
     "runtime-main.js": "/fireblight-research-map/static/js/runtime-main.ef799fb1.js",
     "runtime-main.js.map": "/fireblight-research-map/static/js/runtime-main.ef799fb1.js.map",
-    "static/js/2.9242856f.chunk.js": "/fireblight-research-map/static/js/2.9242856f.chunk.js",
-    "static/js/2.9242856f.chunk.js.map": "/fireblight-research-map/static/js/2.9242856f.chunk.js.map",
+    "static/js/2.5627a551.chunk.js": "/fireblight-research-map/static/js/2.5627a551.chunk.js",
+    "static/js/2.5627a551.chunk.js.map": "/fireblight-research-map/static/js/2.5627a551.chunk.js.map",
     "index.html": "/fireblight-research-map/index.html",
-    "precache-manifest.fe6418d4e0a82fd00a2cde1f0783a5f1.js": "/fireblight-research-map/precache-manifest.fe6418d4e0a82fd00a2cde1f0783a5f1.js",
+    "precache-manifest.f5199f8546e672983ca5ad7f5bc7d23d.js": "/fireblight-research-map/precache-manifest.f5199f8546e672983ca5ad7f5bc7d23d.js",
     "service-worker.js": "/fireblight-research-map/service-worker.js",
-    "static/css/main.8a002164.chunk.css.map": "/fireblight-research-map/static/css/main.8a002164.chunk.css.map",
-    "static/js/2.9242856f.chunk.js.LICENSE.txt": "/fireblight-research-map/static/js/2.9242856f.chunk.js.LICENSE.txt"
+    "static/css/main.b32b557d.chunk.css.map": "/fireblight-research-map/static/css/main.b32b557d.chunk.css.map",
+    "static/js/2.5627a551.chunk.js.LICENSE.txt": "/fireblight-research-map/static/js/2.5627a551.chunk.js.LICENSE.txt",
+    "static/media/fireblight_logo.png": "/fireblight-research-map/static/media/fireblight_logo.ee2fda57.png"
   },
   "entrypoints": [
     "static/js/runtime-main.ef799fb1.js",
-    "static/js/2.9242856f.chunk.js",
-    "static/css/main.8a002164.chunk.css",
-    "static/js/main.e517d880.chunk.js"
+    "static/js/2.5627a551.chunk.js",
+    "static/css/main.b32b557d.chunk.css",
+    "static/js/main.c3de4862.chunk.js"
   ]
 }
