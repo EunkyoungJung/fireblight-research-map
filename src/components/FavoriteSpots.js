@@ -4,6 +4,7 @@ import styled from "styled-components";
 import favoriteSelect from "../img/favorite_select.png";
 import favoriteDeselect from "../img/favorite_deselect.png";
 import FireblightSpotInfo from "./FireblightSpotInfo";
+import FireBlightReport from "./FireBlightReport";
 
 const Wrapper = styled.div`
   width: 100%;
@@ -13,6 +14,7 @@ const Wrapper = styled.div`
   padding-left: 5px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Image = styled.img`
@@ -31,7 +33,7 @@ const Contents = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: no-wrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   box-sizing: border-box;
   padding: 5px;
@@ -41,6 +43,8 @@ const FavoriteSpots = (props) => {
   // const { favorites } = props;
   const favorites = [1, 2, 3, 4];
 
+  const { spots } = props;
+
   return (
     <Wrapper>
       <Title>
@@ -49,7 +53,7 @@ const FavoriteSpots = (props) => {
       </Title>
       <Contents>
         {favorites
-          ? favorites.map((item) => <FireblightSpotInfo data={item} />)
+          ? spots.map((item) => <FireBlightReport spot={item} />)
           : null}
       </Contents>
     </Wrapper>

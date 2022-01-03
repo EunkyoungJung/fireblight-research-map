@@ -3,8 +3,8 @@ import "./App.css";
 import styled from "styled-components";
 import XLSX from "xlsx";
 
-import MapContainer from "../src/components/MapContainer";
-import ExplainHowToUse from "../src/components/ExplainHowToUse";
+import MapContainer from "./components/MapContainer";
+import ExplainHowToUse from "./components/ExplainHowToUse";
 
 const Wrapper = styled.div`
   display: flex;

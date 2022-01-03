@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+
 import { divIcon } from "leaflet";
 import {
   Map,
@@ -39,8 +41,16 @@ const MapComponent = (props) => {
     lat: 0,
     lng: 0,
   });
-
   const [visibleFireblightSpots, setVisibleFireblightSpots] = useState(false);
+  const [fbSpotInfo, setFbSpotInfo] = useState([]);
+
+  const pallette = {
+    없음: "#A5A5A5",
+    낮음: "#00B050",
+    "다소 높음": "#FFC000",
+    위험: "#ED7D31",
+    "매우 위험": "#FF0000",
+  };
 
   const mapUrls = {
     base: "https://xdworld.vworld.kr/2d/Base/201612/{z}/{x}/{y}.png",
@@ -81,21 +91,26 @@ const MapComponent = (props) => {
           ? spots.map((spot, idx) => (
               <Marker
                 key={idx}
-                position={[spot["위도"], spot["경도"]]}
+                onClick={function (e) {
+                  console.log("ahahah", e);
+                }}
+                position={[spot["lat"], spot["lon"]]}
                 icon={divIcon({
                   className: "",
                   iconSize: [24, 24],
-                  html: `<div style="background:${
-                    spot.color ? spot.color : "yellow"
-                  }; height:24px; border-radius:50%;"><div/>`,
+                  html: `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
+                    spot.color ? spot.color : "#A5A5A5"
+                  }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${
+                    spot.name
+                  }<div/>`,
                 })}
               >
-                <Tooltip>
+                {/* <Tooltip>
                   <InformationInTooltip data={spot} />
                 </Tooltip>
                 <Popup>
                   <InformationInPopup data={spot} />
-                </Popup>
+                </Popup> */}
               </Marker>
             ))
           : null}

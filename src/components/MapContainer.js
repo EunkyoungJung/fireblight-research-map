@@ -50,7 +50,7 @@ const MapContainer = (props) => {
         ? spots.map((spot, idx) => (
             <Marker
               key={idx}
-              position={[spot["위도"], spot["경도"]]}
+              position={[spot["lat"], spot["lon"]]}
               icon={divIcon({
                 className: "",
                 iconSize: [24, 24],
