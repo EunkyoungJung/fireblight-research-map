@@ -134,10 +134,10 @@ const FlowerInfectionDangerChart = (props) => {
       },
     },
     series: [
-      { name: "매우 위험", color: "red", data: series1 },
-      { name: "다소 높음", color: "yellow", data: series2 },
-      { name: "위험", color: "orange", data: series3 },
-      { name: "낮음", color: "green", data: series4 },
+      { name: "매우 위험", color: "red", data: series4 },
+      { name: "다소 높음", color: "yellow", data: series3 },
+      { name: "위험", color: "orange", data: series2 },
+      { name: "낮음", color: "green", data: series1 },
     ],
   };
 
