@@ -82,11 +82,11 @@ const FavoriteSpots = (props) => {
       <Title>
         {/* <Image src={favoriteSelect} alt="favorite icon" />
         관심 지점 (최대 4곳) */}
-        선택 지점5 (최대 4곳)
+        선택 지점6 (최대 4곳)
       </Title>
       <Contents>
         {spots && spots.length > 0 ? (
-          <testDiv>테스트div</testDiv>
+          spots.map((item) => <testDiv>테스트div</testDiv>)
         ) : (
           // spots.map((item) => (
           //   // <FireBlightReport spto={item} fbSpotData={item} />
