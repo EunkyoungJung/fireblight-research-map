@@ -20,12 +20,13 @@ const MapWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  z-index: 900;
 `;
 
 const ToggleButton = styled.button`
   position: absolute;
   right: 0;
-  z-index: 9999;
+  z-index: 900;
   background-color: red;
   color: white;
   box-sizing: border-box;
@@ -149,11 +150,6 @@ const MapComponent = (props) => {
               </Marker>
             ))
           : null}
-        {console.log(
-          "fireblightSpots",
-          fireblightSpots,
-          visibleFireblightSpots
-        )}
         {fireblightSpots && visibleFireblightSpots
           ? fireblightSpots.map((spot, idx) => (
               <Marker

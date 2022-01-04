@@ -7,8 +7,10 @@ import "./App.css";
 import ServiceTitle from "./components/ServiceTitle";
 import MapComponent from "./components/MapComponent";
 import FavoriteSpots from "./components/FavoriteSpots";
-import AppleOrPearToggleButton from "./components/AppleOrPearTobbleButton";
+import Modal from "./components/Modal";
 import SelectComponent from "./components/SelectComponent";
+import FileUploader from "./components/FileUploader";
+import AppleOrPearToggleButton from "./components/AppleOrPearTobbleButton";
 import stations from "./data/station.json";
 import fbSpots from "./data/fireblightSpots.json";
 
@@ -45,9 +47,17 @@ const ContentsWrapper = styled.div`
 const Selector = styled.select``;
 
 const Button = styled.button`
-  background-color: orange;
+  cursor: pointer;
+  background-color: #2940d3;
+  color: white;
+  font-weight: 600;
   border: none;
   width: 150px;
+  height: 100%;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 25px;
+  margin-left: 5px;
 `;
 
 const LeftContentsWrapper = styled.div`
@@ -65,9 +75,16 @@ function App() {
   const [selectedFruit, setSelectedFruit] = useState("apple");
   const [selectedSpots, setSelectedSpots] = useState([]);
 
-  const [fireblightSpots, setFireblightSpots] = useState(fbSpots);
+  const [modalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  const [fireblightSpots, setFireblightSpots] = useState([]);
   const [stationsData, setStationsData] = useState([]);
-  const today = new Date();
 
   const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
     const begin = `${selectedYear}-01-01`;
@@ -107,7 +124,17 @@ function App() {
             onChangeOption={setSelectedYear}
             options={[2021, 2022]}
           />
-          <Button>화상병 발생 지점 등록</Button>
+          <Button onClick={openModal}>화상병 발생 지점 등록</Button>
+          {modalVisible && (
+            <Modal
+              visible={modalVisible}
+              closable={true}
+              maskClosable={true}
+              onClose={closeModal}
+            >
+              <FileUploader updateFireblightSpots={setFireblightSpots} />
+            </Modal>
+          )}
         </MenuWrapper>
       </NavWrapper>
       <ContentsWrapper>

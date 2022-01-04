@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   font-size: 16px;
   text-align: center;
+  margin-left: 5px;
 `;
 
 const Select = styled.select`
