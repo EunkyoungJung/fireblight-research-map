@@ -10,6 +10,7 @@ import FavoriteSpots from "./components/FavoriteSpots";
 import AppleOrPearToggleButton from "./components/AppleOrPearTobbleButton";
 import SelectComponent from "./components/SelectComponent";
 import stations from "./data/station.json";
+import fbSpots from "./data/fireblightSpots.json";
 
 const Wrapper = styled.div`
   display: flex;
@@ -60,7 +61,7 @@ const RightContentsWrapper = styled.div`
 `;
 
 function App() {
-  const [fbSpots, setFbSpots] = useState({});
+  const [fireblightSpots, setFireblightSpots] = useState(fbSpots);
   const begin = "2021-04-01";
   const today = new Date().toISOString().split("T")[0];
   const GetFBSpotData = async (station) => {
@@ -78,7 +79,7 @@ function App() {
     stations.map((station) => {
       GetFBSpotData(station);
     });
-  }, [stations]);
+  }, [stations, fireblightSpots]);
 
   return (
     <Wrapper>
@@ -92,7 +93,7 @@ function App() {
       </NavWrapper>
       <ContentsWrapper>
         <LeftContentsWrapper>
-          <MapComponent spots={stations} />
+          <MapComponent spots={stations} fireblightSpots={fireblightSpots} />
         </LeftContentsWrapper>
         <RightContentsWrapper>
           <FavoriteSpots spots={stations.slice(1, 5)} />

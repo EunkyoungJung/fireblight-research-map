@@ -76,6 +76,7 @@ const MapComponent = (props) => {
       <Map
         center={[35.9078, 127.7669]}
         zoom={7.45}
+        minZoom={7} // 줌을 줄여도 한국지도가 나오도록
         style={{ width: "100%" }}
         onClick={onClickMap}
       >
@@ -112,6 +113,24 @@ const MapComponent = (props) => {
                   <InformationInPopup data={spot} />
                 </Popup> */}
               </Marker>
+            ))
+          : null}
+        {fireblightSpots && visibleFireblightSpots
+          ? fireblightSpots.map((spot, idx) => (
+              <Marker
+                key={idx}
+                onClick={function (e) {
+                  console.log("ahahah", e);
+                }}
+                position={[spot["lat"], spot["lon"]]}
+                icon={divIcon({
+                  className: "",
+                  iconSize: [24, 24],
+                  html: `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
+                    spot.color ? spot.color : "#FF0000"
+                  }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">FB<div/>`,
+                })}
+              ></Marker>
             ))
           : null}
       </Map>
