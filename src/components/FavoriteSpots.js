@@ -46,7 +46,8 @@ const Title = styled.div`
 // `;
 
 const Contents = styled.div`
-  height: 90%;
+  width: 100%;
+  height: 100%;
   display: flex;
   /* display: flex;
   flex-wrap: no-wrap; */
@@ -81,7 +82,7 @@ const FavoriteSpots = (props) => {
       <Title>
         {/* <Image src={favoriteSelect} alt="favorite icon" />
         관심 지점 (최대 4곳) */}
-        선택 지점2 (최대 4곳)
+        선택 지점3 (최대 4곳)
       </Title>
       <Contents>
         {console.log("관심지점", spots)}
