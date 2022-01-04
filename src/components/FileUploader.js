@@ -43,7 +43,7 @@ const Input = styled.input`
 `;
 
 const FileUploader = (props) => {
-  const { updateFireblightSpots } = props;
+  const { updateFireblightSpots, onClose } = props;
   const handleChange = (e) => {
     const selectedFile = e.target.files[0];
     const fileReader = new FileReader();
@@ -83,6 +83,7 @@ const FileUploader = (props) => {
         try {
           updateFireblightSpots(result);
           alert("파일 업로드를 완료하였습니다.");
+          onClose();
         } catch (error) {
           alert(
             "파일 업로드에 실패하였습니다. 파일양식을 다시 확인하여 주세요."

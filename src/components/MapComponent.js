@@ -50,6 +50,14 @@ const MapComponent = (props) => {
     "매우 위험": "#FF0000",
   };
 
+  const birPallete = {
+    0: "#A5A5A5",
+    1: "#00B050",
+    2: "#FFC000",
+    3: "#ED7D31",
+    4: "#FF0000",
+  };
+
   const mapUrls = {
     base: "https://xdworld.vworld.kr/2d/Base/201612/{z}/{x}/{y}.png",
     hybrid: "https://xdworld.vworld.kr/2d/Hybrid/201612/{z}/{x}/{y}.png",
@@ -104,6 +112,8 @@ const MapComponent = (props) => {
     setVisibleFireblightSpots(!visibleFireblightSpots);
   };
 
+  console.log(spots);
+
   return (
     <MapWrapper>
       <ToggleButton onClick={onClickVisibleFrieblightButton}>
@@ -139,7 +149,7 @@ const MapComponent = (props) => {
                   className: "",
                   iconSize: [24, 24],
                   html: `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
-                    spot.color ? spot.color : "#A5A5A5"
+                    spot.maxBir ? birPallete[spot.maxBir] : birPallete[0]
                   }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${
                     spot.name
                   }<div/>`,

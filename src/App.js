@@ -85,6 +85,7 @@ function App() {
 
   const [fireblightSpots, setFireblightSpots] = useState([]);
   const [stationsData, setStationsData] = useState([]);
+  const [stationSpots, setStationSpots] = useState([]);
 
   const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
     const begin = `${selectedYear}-01-01`;
@@ -96,14 +97,21 @@ function App() {
       )
       .then((response) => {
         const data = response.data;
-        const currentData = stationsData;
-        currentData.push(data);
-        setStationsData([...currentData]);
+        // 전체 데이터중 가장 높은 꽃감염위험도 추출
+        let maxBir = Math.max(
+          ...data.filter((item) => item.bir != null).map((item) => item.bir)
+        );
+        let newStation = {
+          ...station,
+          maxBir: maxBir,
+        };
+        const currentData = stationSpots;
+        currentData.push(newStation);
+        setStationSpots([...currentData]);
       });
   };
 
   useEffect(() => {
-    console.log("selected year&fruit change", selectedFruit, selectedYear);
     stations.map((station) => {
       GetFBSpotData(station, selectedYear, selectedFruit);
     });
@@ -132,7 +140,10 @@ function App() {
               maskClosable={true}
               onClose={closeModal}
             >
-              <FileUploader updateFireblightSpots={setFireblightSpots} />
+              <FileUploader
+                updateFireblightSpots={setFireblightSpots}
+                onClose={closeModal}
+              />
             </Modal>
           )}
         </MenuWrapper>
@@ -140,7 +151,7 @@ function App() {
       <ContentsWrapper>
         <LeftContentsWrapper>
           <MapComponent
-            spots={stations}
+            spots={stationSpots}
             fireblightSpots={fireblightSpots}
             selectedSpots={selectedSpots}
             addSelectedSpots={setSelectedSpots}
@@ -150,12 +161,6 @@ function App() {
           <FavoriteSpots
             selectedYear={selectedYear}
             selectedFruit={selectedFruit}
-            // spots={[
-            //   stationsData[1],
-            //   stationsData[2],
-            //   stationsData[3],
-            //   stationsData[4],
-            // ]}
             spots={selectedSpots}
           />
         </RightContentsWrapper>
