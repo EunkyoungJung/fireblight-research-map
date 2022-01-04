@@ -98,9 +98,14 @@ function App() {
       .then((response) => {
         const data = response.data;
         // 전체 데이터중 가장 높은 꽃감염위험도 추출
-        let maxBir = Math.max(
-          ...data.filter((item) => item.bir != null).map((item) => item.bir)
-        );
+        let stationBirs = [];
+        let maxBir = 0;
+        stationBirs = data.filter((item) => item.bir != null);
+        if (stationBirs.length > 0) {
+          maxBir = Math.max(
+            ...data.filter((item) => item.bir != null).map((item) => item.bir)
+          );
+        }
         let newStation = {
           ...station,
           maxBir: maxBir,
@@ -113,6 +118,7 @@ function App() {
 
   useEffect(() => {
     stations.map((station) => {
+      setStationSpots([]);
       GetFBSpotData(station, selectedYear, selectedFruit);
     });
   }, [selectedYear, selectedFruit, stations]);
