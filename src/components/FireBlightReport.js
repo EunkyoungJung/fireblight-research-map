@@ -77,7 +77,7 @@ const DateListComponent = (props) => {
       <SubTitle>{title}</SubTitle>
       <DatesWrapper>
         {data && data.length > 0 ? (
-          data.map((item, index) => <DateIcon>{item.tm}</DateIcon>)
+          data.map((item, index) => <DateIcon key={index}>{item.tm}</DateIcon>)
         ) : (
           <NoData>해당 데이터 없음</NoData>
         )}
@@ -87,8 +87,7 @@ const DateListComponent = (props) => {
 };
 
 const FireBlightReport = (props) => {
-  const { spot } = props;
-  const [isInit, setIsinit] = useState(false);
+  const { spot, selectedFruit, selectedYear, fbSpotData } = props;
   const [success, setSucess] = useState(false);
   const [fireblightDailyReports, setFireblightDailyReports] = useState(null);
   const [bbs, setBbs] = useState([]);
@@ -106,13 +105,17 @@ const FireBlightReport = (props) => {
     7: "과실비대기",
   };
 
-  const begin = "2021-01-01";
-  // const today = new Date().toISOString().split("T")[0];
-  const today = "2021-08-30";
-  const GetFBSpotData = async (spot) => {
+  const fruitTitle = {
+    apple: "사과",
+    pear: "배",
+  };
+
+  const GetFBSpotData = async (spot, selectedFruit, selectedYear) => {
+    const begin = `${selectedYear}-01-01`;
+    const until = `${selectedYear}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${today}&plant=apple&lon=${spot.lon}&lat=${spot.lat}&format=json`
+        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=apple&lon=${spot.lon}&lat=${spot.lat}&format=json`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
@@ -127,14 +130,19 @@ const FireBlightReport = (props) => {
   };
 
   useEffect(() => {
-    GetFBSpotData(spot);
-    setIsinit(!isInit);
-  }, [spot]);
+    if (spot) {
+      GetFBSpotData(spot, selectedFruit, selectedYear);
+    }
+  }, [spot, selectedFruit, selectedYear]);
 
   return (
     <Wrapper>
       <Contents>
-        <Title>{spot.name} 화상병 예측</Title>
+        <Title>
+          {selectedYear ? selectedYear : ""}{" "}
+          {selectedFruit ? fruitTitle[selectedFruit] : ""} 화상병 예측
+          {spot && spot.name ? `(${spot.name})` : ""}
+        </Title>
         {/* <div>
           대상기간: {begin} ~ {today} (현재)
         </div>

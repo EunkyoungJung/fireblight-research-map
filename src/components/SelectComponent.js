@@ -22,14 +22,24 @@ const Option = styled.option`
 `;
 
 const SelectComponent = (props) => {
-  const { options } = props;
-  const [selectedOption, setSelectedOption] = useState(null);
+  const { options, selectedOption, onChangeOption } = props;
 
   return (
     <Wrapper>
-      <Select>
+      <Select
+        defaultValue={selectedOption}
+        onChange={(e) => {
+          onChangeOption(e.target.value);
+        }}
+      >
         {options.map((item, index) => (
-          <option key={index}>{item}</option>
+          <option
+            defaultValue={item == selectedOption ? true : false}
+            key={index}
+            value={item}
+          >
+            {item}
+          </option>
         ))}
       </Select>
     </Wrapper>

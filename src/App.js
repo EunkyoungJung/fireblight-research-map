@@ -61,33 +61,51 @@ const RightContentsWrapper = styled.div`
 `;
 
 function App() {
+  const [selectedYear, setSelectedYear] = useState(2021);
+  const [selectedFruit, setSelectedFruit] = useState("apple");
+
   const [fireblightSpots, setFireblightSpots] = useState(fbSpots);
-  const begin = "2021-04-01";
-  const today = new Date().toISOString().split("T")[0];
-  const GetFBSpotData = async (station) => {
+  const [stationsData, setStationsData] = useState([]);
+  const today = new Date();
+
+  const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
+    const begin = `${selectedYear}-01-01`;
+    const until = `${selectedYear}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${begin}&plant=apple&lon=${station.lon}&lat=${station.lat}&format=json`
+        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit}&lon=${station.lon}&lat=${station.lat}&format=json`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
         const data = response.data;
+        const currentData = stationsData;
+        currentData.push(data);
+        setStationsData([...currentData]);
       });
   };
 
   useEffect(() => {
+    console.log("selected year&fruit change", selectedFruit, selectedYear);
     stations.map((station) => {
-      GetFBSpotData(station);
+      GetFBSpotData(station, selectedYear, selectedFruit);
     });
-  }, [stations, fireblightSpots]);
+  }, [selectedYear, selectedFruit, stations]);
 
   return (
     <Wrapper>
       <NavWrapper>
         <ServiceTitle />
         <MenuWrapper>
-          <SelectComponent options={["사과", "배"]} />
-          <SelectComponent options={[2022, 2021]} />
+          <SelectComponent
+            selectOption={selectedFruit}
+            onChangeOption={setSelectedFruit}
+            options={["apple", "pear"]}
+          />
+          <SelectComponent
+            selectOption={selectedYear}
+            onChangeOption={setSelectedYear}
+            options={[2021, 2022]}
+          />
           <Button>화상병 발생 지점 등록</Button>
         </MenuWrapper>
       </NavWrapper>
@@ -96,7 +114,17 @@ function App() {
           <MapComponent spots={stations} fireblightSpots={fireblightSpots} />
         </LeftContentsWrapper>
         <RightContentsWrapper>
-          <FavoriteSpots spots={stations.slice(1, 5)} />
+          <FavoriteSpots
+            selectedYear={selectedYear}
+            selectedFruit={selectedFruit}
+            // spots={[
+            //   stationsData[1],
+            //   stationsData[2],
+            //   stationsData[3],
+            //   stationsData[4],
+            // ]}
+            spots={stations}
+          />
         </RightContentsWrapper>
       </ContentsWrapper>
     </Wrapper>

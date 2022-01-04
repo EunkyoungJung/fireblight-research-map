@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import favoriteSelect from "../img/favorite_select.png";
@@ -52,10 +52,7 @@ const Contents = styled.div`
 `;
 
 const FavoriteSpots = (props) => {
-  // const { favorites } = props;
-  const favorites = [1, 2, 3, 4];
-
-  const { spots } = props;
+  const { spots, selectedYear, selectedFruit } = props;
 
   return (
     <Wrapper>
@@ -65,8 +62,15 @@ const FavoriteSpots = (props) => {
         선택 지점 (최대 4곳)
       </Title>
       <Contents>
-        {favorites
-          ? spots.map((item) => <FireBlightReport spot={item} />)
+        {spots
+          ? spots.map((item) => (
+              // <FireBlightReport spto={item} fbSpotData={item} />
+              <FireBlightReport
+                spot={item}
+                selectedYear={selectedYear}
+                selectedFruit={selectedFruit}
+              />
+            ))
           : null}
       </Contents>
     </Wrapper>
