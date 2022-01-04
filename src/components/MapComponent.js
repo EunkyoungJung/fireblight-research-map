@@ -170,7 +170,7 @@ const MapComponent = (props) => {
                 })}
               >
                 <Tooltip>
-                  {spot.year}({spot.number}): {spot.fruit}`
+                  {spot.year}({spot.number}): {spot.fruit}
                 </Tooltip>
                 <Popup>
                   <FireblightSpotPopupInfo data={spot} />
