@@ -67,6 +67,12 @@ const NoData = styled.div`
   margin: 2px;
 `;
 
+const testDiv = styled.div`
+  width: 50px;
+  height: 5px;
+  background-color: red;
+`;
+
 const FavoriteSpots = (props) => {
   const { spots, selectedYear, selectedFruit } = props;
 
@@ -81,12 +87,13 @@ const FavoriteSpots = (props) => {
         {spots && spots.length > 0 ? (
           spots.map((item) => (
             // <FireBlightReport spto={item} fbSpotData={item} />
-            <FireBlightReport
-              key={item.id}
-              spot={item}
-              selectedYear={selectedYear}
-              selectedFruit={selectedFruit}
-            />
+            // <FireBlightReport
+            //   key={item.id}
+            //   spot={item}
+            //   selectedYear={selectedYear}
+            //   selectedFruit={selectedFruit}
+            // />
+            <testDiv>테스트div</testDiv>
           ))
         ) : (
           <NoData>
