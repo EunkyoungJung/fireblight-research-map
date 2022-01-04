@@ -14,8 +14,7 @@ import {
 import styled from "styled-components";
 
 import "./MapContainer.css";
-import InformationInTooltip from "./InformationInTooltip";
-import InformationInPopup from "./InformationInPopup";
+import FireblightSpotPopupInfo from "./FireblightSpotPopupInfo";
 
 const MapWrapper = styled.div`
   width: 100%;
@@ -145,12 +144,8 @@ const MapComponent = (props) => {
                   }<div/>`,
                 })}
               >
-                {/* <Tooltip>
-                  <InformationInTooltip data={spot} />
-                </Tooltip>
-                <Popup>
-                  <InformationInPopup data={spot} />
-                </Popup> */}
+                <Tooltip>{/* <InformationInTooltip data={spot} /> */}</Tooltip>
+                {/* <Popup><InformationInPopup data={spot} /></Popup> */}
               </Marker>
             ))
           : null}
@@ -173,7 +168,14 @@ const MapComponent = (props) => {
                     spot.color ? spot.color : "#FF0000"
                   }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">FB<div/>`,
                 })}
-              ></Marker>
+              >
+                <Tooltip>
+                  {spot.year}({spot.number}): {spot.fruit}
+                </Tooltip>
+                <Popup>
+                  <FireblightSpotPopupInfo data={spot} />
+                </Popup>
+              </Marker>
             ))
           : null}
       </Map>
