@@ -51,6 +51,19 @@ const Contents = styled.div`
   overflow-y: hidden;
 `;
 
+const NoData = styled.div`
+  font-size: 11px;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  color: white;
+  background-color: gray;
+  border-radius: 5px;
+  margin: 2px;
+`;
+
 const FavoriteSpots = (props) => {
   const { spots, selectedYear, selectedFruit } = props;
 
@@ -62,16 +75,22 @@ const FavoriteSpots = (props) => {
         선택 지점 (최대 4곳)
       </Title>
       <Contents>
-        {spots
-          ? spots.map((item) => (
-              // <FireBlightReport spto={item} fbSpotData={item} />
-              <FireBlightReport
-                spot={item}
-                selectedYear={selectedYear}
-                selectedFruit={selectedFruit}
-              />
-            ))
-          : null}
+        {spots && spots.length > 0 ? (
+          spots.map((item) => (
+            // <FireBlightReport spto={item} fbSpotData={item} />
+            <FireBlightReport
+              key={item.id}
+              spot={item}
+              selectedYear={selectedYear}
+              selectedFruit={selectedFruit}
+            />
+          ))
+        ) : (
+          <NoData>
+            선택된 지점이 없습니다. 왼쪽 지도에서 지점을 선택하여 주세요. (최대
+            4개)
+          </NoData>
+        )}
       </Contents>
     </Wrapper>
   );

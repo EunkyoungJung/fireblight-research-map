@@ -61,8 +61,10 @@ const RightContentsWrapper = styled.div`
 `;
 
 function App() {
+  const MaxMarkerSelectCount = 4;
   const [selectedYear, setSelectedYear] = useState(2021);
   const [selectedFruit, setSelectedFruit] = useState("apple");
+  const [selectedSpots, setSelectedSpots] = useState([]);
 
   const [fireblightSpots, setFireblightSpots] = useState(fbSpots);
   const [stationsData, setStationsData] = useState([]);
@@ -111,7 +113,12 @@ function App() {
       </NavWrapper>
       <ContentsWrapper>
         <LeftContentsWrapper>
-          <MapComponent spots={stations} fireblightSpots={fireblightSpots} />
+          <MapComponent
+            spots={stations}
+            fireblightSpots={fireblightSpots}
+            selectedSpots={selectedSpots}
+            addSelectedSpots={setSelectedSpots}
+          />
         </LeftContentsWrapper>
         <RightContentsWrapper>
           <FavoriteSpots
@@ -123,7 +130,7 @@ function App() {
             //   stationsData[3],
             //   stationsData[4],
             // ]}
-            spots={stations}
+            spots={selectedSpots}
           />
         </RightContentsWrapper>
       </ContentsWrapper>
