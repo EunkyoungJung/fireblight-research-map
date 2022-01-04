@@ -82,22 +82,23 @@ const FavoriteSpots = (props) => {
       <Title>
         {/* <Image src={favoriteSelect} alt="favorite icon" />
         관심 지점 (최대 4곳) */}
-        선택 지점3 (최대 4곳)
+        선택 지점4 (최대 4곳)
       </Title>
       <Contents>
         {console.log("관심지점", spots)}
         {spots && spots.length > 0 ? (
-          spots.map((item) => (
-            // <FireBlightReport spto={item} fbSpotData={item} />
-            // <FireBlightReport
-            //   key={item.id}
-            //   spot={item}
-            //   selectedYear={selectedYear}
-            //   selectedFruit={selectedFruit}
-            // />
-            <testDiv>테스트div</testDiv>
-          ))
+          console.log("관심지점", spots)
         ) : (
+          // spots.map((item) => (
+          //   // <FireBlightReport spto={item} fbSpotData={item} />
+          //   // <FireBlightReport
+          //   //   key={item.id}
+          //   //   spot={item}
+          //   //   selectedYear={selectedYear}
+          //   //   selectedFruit={selectedFruit}
+          //   // />
+          //   <testDiv>테스트div</testDiv>
+          // ))
           <NoData>
             선택된 지점이 없습니다. 왼쪽 지도에서 지점을 선택하여 주세요. (최대
             4개)
