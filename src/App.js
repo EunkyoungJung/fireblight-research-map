@@ -54,7 +54,7 @@ const LeftContentsWrapper = styled.div`
 `;
 
 const RightContentsWrapper = styled.div`
-  width: 100%;
+  width: 80%;
   box-sizing: border-box;
   padding-left: 10px;
 `;

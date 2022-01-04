@@ -30,6 +30,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
+  margin-bottom: 5px;
 `;
 
 // const Contents = styled.div`
@@ -59,8 +60,9 @@ const FavoriteSpots = (props) => {
   return (
     <Wrapper>
       <Title>
-        <Image src={favoriteSelect} alt="favorite icon" />
-        관심 지점 (최대 4곳)
+        {/* <Image src={favoriteSelect} alt="favorite icon" />
+        관심 지점 (최대 4곳) */}
+        선택 지점 (최대 4곳)
       </Title>
       <Contents>
         {favorites

@@ -134,8 +134,8 @@ const FireBlightReport = (props) => {
   return (
     <Wrapper>
       <Contents>
-        <Title>{spot.name} 화상병 예측 보고서</Title>
-        <div>
+        <Title>{spot.name} 화상병 예측</Title>
+        {/* <div>
           대상기간: {begin} ~ {today} (현재)
         </div>
         <div>
@@ -145,7 +145,7 @@ const FireBlightReport = (props) => {
                 fireblightDailyReports[fireblightDailyReports.length - 1].growth
               ]
             : "-"}
-        </div>
+        </div> */}
         <SubContents>
           <SubTitle>꽃감염 위험도 그래프</SubTitle>
           <FlowerInfectionDangerChart
