@@ -52,6 +52,7 @@ const Contents = styled.div`
   flex-wrap: no-wrap; */
   overflow-x: scroll;
   overflow-y: hidden;
+  z-index: 900;
 `;
 
 const NoData = styled.div`
