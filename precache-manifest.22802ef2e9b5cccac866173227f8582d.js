@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "159347d14a52ef02005ab39a9e36905c",
+    "revision": "a8dce4526d230f5055acde5e73c0746b",
     "url": "/fireblight-research-map/index.html"
   },
   {
-    "revision": "32807559dce8bd1840e3",
+    "revision": "18b5ea1069751f704bfa",
     "url": "/fireblight-research-map/static/css/main.b32b557d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/fireblight-research-map/static/js/2.23c4c492.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "32807559dce8bd1840e3",
-    "url": "/fireblight-research-map/static/js/main.d9e75057.chunk.js"
+    "revision": "18b5ea1069751f704bfa",
+    "url": "/fireblight-research-map/static/js/main.c13c9e6b.chunk.js"
   },
   {
     "revision": "cc3aeefc09df8a17fa86",
