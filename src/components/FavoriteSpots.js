@@ -48,7 +48,8 @@ const Title = styled.div`
 const Contents = styled.div`
   height: 90%;
   display: flex;
-  flex-wrap: no-wrap;
+  /* display: flex;
+  flex-wrap: no-wrap; */
   overflow-x: scroll;
   overflow-y: hidden;
 `;
