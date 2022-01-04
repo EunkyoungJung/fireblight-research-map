@@ -84,6 +84,7 @@ const FavoriteSpots = (props) => {
         선택 지점 (최대 4곳)
       </Title>
       <Contents>
+        {console.log("관심지점", spots)}
         {spots && spots.length > 0 ? (
           spots.map((item) => (
             // <FireBlightReport spto={item} fbSpotData={item} />
