@@ -46,6 +46,7 @@ const Title = styled.div`
 // `;
 
 const Contents = styled.div`
+  height: 90%;
   display: flex;
   flex-wrap: no-wrap;
   overflow-x: scroll;
@@ -55,7 +56,7 @@ const Contents = styled.div`
 const NoData = styled.div`
   font-size: 11px;
   width: 100%;
-  height: 100%;
+  height: 50px;
   padding: 10px;
   box-sizing: border-box;
   text-align: center;
