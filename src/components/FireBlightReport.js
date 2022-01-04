@@ -87,7 +87,7 @@ const DateListComponent = (props) => {
 };
 
 const FireBlightReport = (props) => {
-  const { spot, selectedFruit, selectedYear, fbSpotData } = props;
+  const { spot, selectedFruit, selectedYear } = props;
   const [success, setSucess] = useState(false);
   const [fireblightDailyReports, setFireblightDailyReports] = useState(null);
   const [bbs, setBbs] = useState([]);

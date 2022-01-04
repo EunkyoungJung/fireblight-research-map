@@ -89,7 +89,7 @@ const FavoriteSpots = (props) => {
           spots.map((item) => (
             <FireBlightReport
               key={item.id}
-              pot={item}
+              spot={item}
               selectedYear={selectedYear}
               selectedFruit={selectedFruit}
             />
