@@ -5,8 +5,8 @@ import axios from "axios";
 import FlowerInfectionDangerChart from "./FlowerInfectionDangerChart";
 
 const Wrapper = styled.div`
-  width: 700px;
-  height: 500px;
+  width: 350px;
+  height: 100%;
   border-color: gray;
   margin-right: 15px;
   background-color: #cee5d0;

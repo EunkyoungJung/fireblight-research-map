@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import XLSX from "xlsx";
@@ -49,12 +49,17 @@ const Button = styled.button`
   width: 150px;
 `;
 
-const MapComponentWrapper = styled.div`
-  width: 50%;
+const LeftContentsWrapper = styled.div`
+  width: 500px;
+`;
+
+const RightContentsWrapper = styled.div`
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 10px;
 `;
 
 function App() {
-  const [isInit, setIsInit] = useState(false);
   const [fbSpots, setFbSpots] = useState({});
   const begin = "2021-04-01";
   const today = new Date().toISOString().split("T")[0];
@@ -69,27 +74,29 @@ function App() {
       });
   };
 
-  if (!isInit) {
+  useEffect(() => {
     stations.map((station) => {
       GetFBSpotData(station);
     });
-  }
+  }, [stations]);
 
   return (
     <Wrapper>
       <NavWrapper>
         <ServiceTitle />
         <MenuWrapper>
-          <AppleOrPearToggleButton />
+          <SelectComponent options={["사과", "배"]} />
           <SelectComponent options={[2022, 2021]} />
           <Button>화상병 발생 지점 등록</Button>
         </MenuWrapper>
       </NavWrapper>
       <ContentsWrapper>
-        <MapComponentWrapper>
+        <LeftContentsWrapper>
           <MapComponent spots={stations} />
-        </MapComponentWrapper>
-        <FavoriteSpots spots={stations.slice(1, 5)} />
+        </LeftContentsWrapper>
+        <RightContentsWrapper>
+          <FavoriteSpots spots={stations.slice(1, 5)} />
+        </RightContentsWrapper>
       </ContentsWrapper>
     </Wrapper>
   );

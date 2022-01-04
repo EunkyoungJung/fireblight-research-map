@@ -25,7 +25,7 @@ const Image = styled.img`
 const ServiceTitle = () => {
   return (
     <Wrapper>
-      <Image src={fireblightLogoSmall} alt="service logo" />
+      {/* <Image src={fireblightLogoSmall} alt="service logo" /> */}
       <Title>화상병 연구지도</Title>
     </Wrapper>
   );
