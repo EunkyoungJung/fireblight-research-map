@@ -82,7 +82,7 @@ const FavoriteSpots = (props) => {
       <Title>
         {/* <Image src={favoriteSelect} alt="favorite icon" />
         관심 지점 (최대 4곳) */}
-        선택 지점7 (최대 4곳)
+        선택 지점 (최대 4곳)
       </Title>
       <Contents>
         {spots && spots.length > 0 ? (
