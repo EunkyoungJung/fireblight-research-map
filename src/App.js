@@ -61,7 +61,6 @@ const RightContentsWrapper = styled.div`
 `;
 
 function App() {
-  const MaxMarkerSelectCount = 4;
   const [selectedYear, setSelectedYear] = useState(2021);
   const [selectedFruit, setSelectedFruit] = useState("apple");
   const [selectedSpots, setSelectedSpots] = useState([]);

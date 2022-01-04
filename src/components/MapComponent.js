@@ -97,7 +97,7 @@ const MapComponent = (props) => {
   };
 
   const onClickFBMarker = (e) => {
-    console.log("onClickFBMarker", e.latlng);
+    console.log("onClickFBMarker", e.latlng, e.target.options.data);
   };
 
   const onClickVisibleFrieblightButton = (e) => {
@@ -154,9 +154,15 @@ const MapComponent = (props) => {
               </Marker>
             ))
           : null}
+        {console.log(
+          "fireblightSpots",
+          fireblightSpots,
+          visibleFireblightSpots
+        )}
         {fireblightSpots && visibleFireblightSpots
           ? fireblightSpots.map((spot, idx) => (
               <Marker
+                data={spot}
                 key={idx}
                 onClick={(e) => onClickFBMarker(e)}
                 position={[spot["lat"], spot["lon"]]}
