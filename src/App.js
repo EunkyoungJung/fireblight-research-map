@@ -23,6 +23,7 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
+  background-color: #2c2f38;
 `;
 
 const NavWrapper = styled.div`
@@ -42,6 +43,9 @@ const ContentsWrapper = styled.div`
   font-size: 16px;
   box-sizing: border-box;
   display: flex;
+  background-color: rgb(0, 6, 18);
+  padding: 10px;
+  border-radius: 10px;
 `;
 
 const Selector = styled.select``;
