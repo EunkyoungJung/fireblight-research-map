@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   background-color: #cee5d0;
   box-sizing: border-box;
   padding: 10px;
-  /* flex: 0 0 auto; */
+  flex: 0 0 auto;
   border-radius: 10px;
   box-shadow: 1px 1px 1px #c9c9c9;
   overflow-y: auto;

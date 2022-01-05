@@ -109,10 +109,15 @@ const MapComponent = (props) => {
   };
 
   const onClickVisibleFrieblightButton = (e) => {
+    // 등록된 화상병 발생 지점이 없을 때, 화상병 발생 지점 표시버튼을 클릭할 경우
+    if (!visibleFireblightSpots & (fireblightSpots.length < 1)) {
+      alert(
+        "현재 등록된 화상병 발생 지점이 없습니다. 화상병 발생 지점을 등록해 보세요."
+      );
+      return;
+    }
     setVisibleFireblightSpots(!visibleFireblightSpots);
   };
-
-  console.log(spots);
 
   return (
     <MapWrapper>
