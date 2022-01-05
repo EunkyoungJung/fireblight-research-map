@@ -42,6 +42,7 @@ const Input = styled.input`
   margin: 0;
 `;
 
+// 업로드 파일의 최대 용량 제한 로직 필요!
 const FileUploader = (props) => {
   const { updateFireblightSpots, onClose } = props;
   const handleChange = (e) => {
