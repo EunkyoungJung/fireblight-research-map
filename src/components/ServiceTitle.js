@@ -14,7 +14,8 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   font-size: 30px;
-  color: rgb(40, 171, 185);
+  color: #429a7a;
+  /* color: rgb(40, 171, 185); */
   font-weight: 600px;
 `;
 

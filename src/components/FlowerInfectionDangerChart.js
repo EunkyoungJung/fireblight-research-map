@@ -119,7 +119,7 @@ const FlowerInfectionDangerChart = (props) => {
       min: 0,
       max: 4,
       title: {
-        text: "꽃 감염 위험단계",
+        text: "꽃감염 위험단계",
       },
     },
     credits: {

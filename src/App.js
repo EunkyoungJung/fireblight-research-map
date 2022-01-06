@@ -23,7 +23,9 @@ const Wrapper = styled.div`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #2c2f38;
+  // background-color: #2c2f38;
+  background-color: #f1dfdf;
+  color: #292929;
 `;
 
 const NavWrapper = styled.div`
@@ -43,7 +45,9 @@ const ContentsWrapper = styled.div`
   font-size: 16px;
   box-sizing: border-box;
   display: flex;
-  background-color: rgb(0, 6, 18);
+  // background-color: rgb(0, 6, 18);
+  // background-color: #91a9d5;
+  background-color: #ffffff;
   padding: 10px;
   border-radius: 10px;
 `;

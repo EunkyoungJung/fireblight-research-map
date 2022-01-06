@@ -30,7 +30,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   font-size: 20px;
-  color: white;
+  /* color: white; */
   margin-bottom: 5px;
 `;
 

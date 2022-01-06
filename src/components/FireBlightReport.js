@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   height: 100%;
   border-color: gray;
   margin-right: 15px;
-  background-color: #cee5d0;
+  // background-color: #cee5d0;
+  background-color: #429a7a;
   box-sizing: border-box;
   padding: 10px;
   flex: 0 0 auto;
@@ -33,6 +34,9 @@ const Title = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
+  color: white;
+  box-sizing: border-box;
+  padding-bottom: 5px;
 `;
 
 const SubTitle = styled.div``;
@@ -140,7 +144,7 @@ const FireBlightReport = (props) => {
       <Contents>
         <Title>
           {selectedYear ? selectedYear : ""}{" "}
-          {selectedFruit ? fruitTitle[selectedFruit] : ""} 화상병 예측
+          {selectedFruit ? fruitTitle[selectedFruit] : ""} 화상병 예측{" "}
           {spot && spot.name ? `(${spot.name})` : ""}
         </Title>
         {/* <div>
@@ -162,9 +166,9 @@ const FireBlightReport = (props) => {
           />
         </SubContents>
         <DateListComponent title="꽃병징 출현" data={bbs} />
-        <DateListComponent title="궤양활성 출현" data={cms} />
-        <DateListComponent title="궤양병징 출현" data={cbs} />
-        <DateListComponent title="신초증상 출현" data={sbs} />
+        <DateListComponent title="궤양 활성 출현" data={cms} />
+        <DateListComponent title="궤양 병징 출현" data={cbs} />
+        <DateListComponent title="신초 증상 출현" data={sbs} />
       </Contents>
     </Wrapper>
   );
