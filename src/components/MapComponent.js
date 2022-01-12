@@ -138,11 +138,11 @@ const MapComponent = (props) => {
 
   return (
     <MapWrapper>
-      <ToggleButton onClick={onClickVisibleFrieblightButton}>
+      {/* <ToggleButton onClick={onClickVisibleFrieblightButton}>
         {!visibleFireblightSpots
           ? "화상병 발생 지점 표시"
           : "화상별 발생 지점 숨기기"}
-      </ToggleButton>
+      </ToggleButton> */}
       <Map
         center={[35.9078, 127.7669]}
         zoom={7.45}

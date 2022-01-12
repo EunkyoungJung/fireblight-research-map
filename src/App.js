@@ -146,7 +146,7 @@ function App() {
             onChangeOption={setSelectedYear}
             options={[2021, 2022]}
           />
-          <Button onClick={openModal}>화상병 발생 지점 등록</Button>
+          {/* <Button onClick={openModal}>화상병 발생 지점 등록</Button> */}
           {modalVisible && (
             <Modal
               visible={modalVisible}
