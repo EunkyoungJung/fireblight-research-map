@@ -96,17 +96,28 @@ function App() {
   const [stationSpots, setStationSpots] = useState([]);
 
   const getFBStatus = (data) => {
-    let result = data.reduce((acc, cur) => {
-      if (cur.bbs | cur.cms | cur.cbs | cur.sbs) {
-        return 5;
+    let result = 0;
+    for (const item of data) {
+      if (item.bbs | item.cms | item.cbs | item.sbs) {
+        result = 5;
+        break;
       }
-      if (cur.bir & (acc < cur.bir)) {
-        return cur.bir;
+      if (item.bir & (item.bir > result)) {
+        result = item.bir;
       }
-      return acc;
-    }, 0);
-
+    }
     return result;
+    // let result = data.reduce((acc, cur) => {
+    //   if (cur.bbs | cur.cms | cur.cbs | cur.sbs) {
+    //     return 5;
+    //   }
+    //   if (cur.bir & (acc < cur.bir)) {
+    //     return cur.bir;
+    //   }
+    //   return acc;
+    // }, 0);
+
+    // return result;
   };
 
   const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
