@@ -25,11 +25,13 @@ const Image = styled.img`
   margin-right: 5px;
 `;
 
+const serviceTitle = "과수화상병 예측 모니터링 시제품";
+
 const ServiceTitle = () => {
   return (
     <Wrapper>
       {/* <Image src={fireblightLogoSmall} alt="service logo" /> */}
-      <Title>화상병 연구지도</Title>
+      <Title>{serviceTitle}</Title>
     </Wrapper>
   );
 };
