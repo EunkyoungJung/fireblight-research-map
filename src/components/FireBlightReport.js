@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 
 import FlowerInfectionDangerChart from "./FlowerInfectionDangerChart";
+import CloseButton from "./CloseButton";
 
 const Wrapper = styled.div`
   width: 350px;
@@ -20,6 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const Contents = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   height: 100%;
@@ -73,6 +75,13 @@ const DatesWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
+const CloseButtonWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+`;
+
 const DateListComponent = (props) => {
   const { title, data } = props;
 
@@ -91,7 +100,7 @@ const DateListComponent = (props) => {
 };
 
 const FireBlightReport = (props) => {
-  const { spot, selectedFruit, selectedYear } = props;
+  const { spot, deleteSpot, selectedFruit, selectedYear } = props;
   const [success, setSucess] = useState(false);
   const [fireblightDailyReports, setFireblightDailyReports] = useState(null);
   const [bbs, setBbs] = useState([]);
@@ -142,6 +151,14 @@ const FireBlightReport = (props) => {
   return (
     <Wrapper>
       <Contents>
+        <CloseButtonWrapper
+          onClick={(e) => {
+            console.log(e.target);
+            deleteSpot(spot.id);
+          }}
+        >
+          <CloseButton />
+        </CloseButtonWrapper>
         <Title>
           {selectedYear ? selectedYear : ""}{" "}
           {selectedFruit ? fruitTitle[selectedFruit] : ""} 화상병 예측{" "}

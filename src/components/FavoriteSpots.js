@@ -66,14 +66,14 @@ const NoData = styled.div`
   margin: 2px;
 `;
 
-const testDiv = styled.div`
-  width: 50px;
-  height: 5px;
-  background-color: red;
-`;
-
 const FavoriteSpots = (props) => {
-  const { spots, selectedYear, selectedFruit } = props;
+  const { spots, selectedYear, selectedFruit, setSelectedSpots } = props;
+
+  const deleteSpot = (spotId) => {
+    const newSpots = spots.filter((item) => item.id != spotId);
+    setSelectedSpots([...newSpots]);
+    return;
+  };
 
   return (
     <Wrapper>
@@ -90,6 +90,7 @@ const FavoriteSpots = (props) => {
               spot={item}
               selectedYear={selectedYear}
               selectedFruit={selectedFruit}
+              deleteSpot={deleteSpot}
             />
           ))
         ) : (

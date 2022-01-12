@@ -176,6 +176,7 @@ function App() {
             selectedYear={selectedYear}
             selectedFruit={selectedFruit}
             spots={selectedSpots}
+            setSelectedSpots={setSelectedSpots}
           />
         </RightContentsWrapper>
       </ContentsWrapper>

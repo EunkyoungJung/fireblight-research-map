@@ -35,28 +35,45 @@ const ToggleButton = styled.button`
   border-radius: 5px;
 `;
 
+// const getMarkerIcon = (color) => {
+//   return `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
+//     spot.maxBir ? birPallete[spot.maxBir] : birPallete[0]
+//   }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${
+//     spot.name
+//   }<div/>`,
+// };
+
+const getMarkerIcon = (color, title, isSelected) => {
+  if (isSelected) {
+    return `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${color}; 
+    height:24px; border-radius:50%; border: 2px solid white; box-shadow: 1px 1px 1px #7C7C7C;">${title}<div/>`;
+  }
+  return `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${color}; 
+    height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${title}<div/>`;
+};
+
+const pallette = {
+  없음: "#A5A5A5",
+  낮음: "#00B050",
+  "다소 높음": "#FFC000",
+  위험: "#ED7D31",
+  "매우 위험": "#FF0000",
+};
+
+const birPallete = {
+  0: "#A5A5A5",
+  1: "#00B050",
+  2: "#FFC000",
+  3: "#ED7D31",
+  4: "#FF0000",
+};
+
 const MapComponent = (props) => {
   const MaxMarkerSelectCount = 4;
   const { spots, fireblightSpots, addSelectedSpots, selectedSpots } = props;
   const [selectedMarker, setSelectedMarker] = useState([]);
   const [visibleFireblightSpots, setVisibleFireblightSpots] = useState(false);
   const [fbSpotInfo, setFbSpotInfo] = useState([]);
-
-  const pallette = {
-    없음: "#A5A5A5",
-    낮음: "#00B050",
-    "다소 높음": "#FFC000",
-    위험: "#ED7D31",
-    "매우 위험": "#FF0000",
-  };
-
-  const birPallete = {
-    0: "#A5A5A5",
-    1: "#00B050",
-    2: "#FFC000",
-    3: "#ED7D31",
-    4: "#FF0000",
-  };
 
   const mapUrls = {
     base: "https://xdworld.vworld.kr/2d/Base/201612/{z}/{x}/{y}.png",
@@ -153,11 +170,14 @@ const MapComponent = (props) => {
                 icon={divIcon({
                   className: "",
                   iconSize: [24, 24],
-                  html: `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
-                    spot.maxBir ? birPallete[spot.maxBir] : birPallete[0]
-                  }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${
-                    spot.name
-                  }<div/>`,
+                  html: getMarkerIcon(
+                    spot.maxBir ? birPallete[spot.maxBir] : birPallete[0],
+                    spot.name ? spot.name : "-",
+                    selectedSpots.filter((item) => item.id == spot.id).length >
+                      0
+                      ? true
+                      : false
+                  ),
                 })}
               >
                 {/* <Tooltip><InformationInTooltip data={spot} /> </Tooltip>*/}
