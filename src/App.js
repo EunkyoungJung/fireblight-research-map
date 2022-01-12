@@ -95,6 +95,20 @@ function App() {
   const [stationsData, setStationsData] = useState([]);
   const [stationSpots, setStationSpots] = useState([]);
 
+  const getFBStatus = (data) => {
+    let result = data.reduce((acc, cur) => {
+      if (cur.bbs | cur.cms | cur.cbs | cur.sbs) {
+        return 5;
+      }
+      if (cur.bir & (acc < cur.bir)) {
+        return cur.bir;
+      }
+      return acc;
+    }, 0);
+
+    return result;
+  };
+
   const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
     const begin = `${selectedYear}-01-01`;
     const until = `${selectedYear}-12-31`;
@@ -107,6 +121,7 @@ function App() {
         const data = response.data;
         // 전체 데이터중 가장 높은 꽃감염위험도 추출
         let stationBirs = [];
+        let fbStatus = getFBStatus(data);
         let maxBir = 0;
         stationBirs = data.filter((item) => item.bir != null);
         if (stationBirs.length > 0) {
@@ -116,6 +131,7 @@ function App() {
         }
         let newStation = {
           ...station,
+          fbStatus: fbStatus,
           maxBir: maxBir,
         };
         const currentData = stationSpots;

@@ -35,14 +35,6 @@ const ToggleButton = styled.button`
   border-radius: 5px;
 `;
 
-// const getMarkerIcon = (color) => {
-//   return `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${
-//     spot.maxBir ? birPallete[spot.maxBir] : birPallete[0]
-//   }; height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${
-//     spot.name
-//   }<div/>`,
-// };
-
 const getMarkerIcon = (color, title, isSelected) => {
   if (isSelected) {
     return `<div style="display: flex; align-items: center; justify-content: center; font-size:10px; color:white; background:${color}; 
@@ -52,20 +44,13 @@ const getMarkerIcon = (color, title, isSelected) => {
     height:24px; border-radius:50%; box-shadow: 1px 1px 1px #7C7C7C;">${title}<div/>`;
 };
 
-const pallette = {
-  없음: "#A5A5A5",
-  낮음: "#00B050",
-  "다소 높음": "#FFC000",
-  위험: "#ED7D31",
-  "매우 위험": "#FF0000",
-};
-
-const birPallete = {
-  0: "#A5A5A5",
-  1: "#00B050",
-  2: "#FFC000",
-  3: "#ED7D31",
-  4: "#FF0000",
+const statusColors = {
+  0: "#A5A5A5", // 꽃감염위험도 정보 없음 & 출현  정보 없음 (gray)
+  1: "#00B050", // 꽃감염위험도 낮음 & 출현없음 (green)
+  2: "#FFC000", // 꽃감염위험도 다소 높음 & 출현없음 (yellow)
+  3: "#ED7D31", // 꽃감염위험도 위험 & 출현없음 (orange)
+  4: "#FF0000", // 꽃감염위험도 매우위험 & 출현없음 (red)
+  5: "purple", // 꽃감염위험도 상관없이 출현이 있으면
 };
 
 const MapComponent = (props) => {
@@ -171,7 +156,9 @@ const MapComponent = (props) => {
                   className: "",
                   iconSize: [24, 24],
                   html: getMarkerIcon(
-                    spot.maxBir ? birPallete[spot.maxBir] : birPallete[0],
+                    spot.fbStatus
+                      ? statusColors[spot.fbStatus]
+                      : statusColors[0],
                     spot.name ? spot.name : "-",
                     selectedSpots.filter((item) => item.id == spot.id).length >
                       0
