@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import CloseButton from "./CloseButton";
+// import CloseButton from "./CloseButton";
 
 const ModalWrapper = styled.div`
   box-sizing: border-box;
@@ -42,6 +42,8 @@ const ModalInner = styled.div`
   padding: 40px 20px;
 `;
 
+const CloseButton = styled.button``;
+
 const Modal = (props) => {
   const { className, onClose, maskClosable, closable, visible, children } =
     props;
@@ -66,7 +68,11 @@ const Modal = (props) => {
         visible={visible}
       >
         <ModalInner tabIndex="0" className="modal-inner">
-          {closable && <CloseButton className="modal-close" onClick={close} />}
+          {closable && (
+            <CloseButton className="modal-close" onClick={close}>
+              취소
+            </CloseButton>
+          )}
           {children}
         </ModalInner>
       </ModalWrapper>
