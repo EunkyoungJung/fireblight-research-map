@@ -76,12 +76,7 @@ const LeftContentsWrapper = styled.div`
 const RightContentsWrapper = styled.div`
   box-sizing: border-box;
   padding-left: 10px;
-`;
-
-const textBox = styled.div`
-  width: 100%;
   height: 100%;
-  background-color: red;
 `;
 
 function App() {
@@ -213,14 +208,19 @@ function App() {
             addSelectedSpots={setSelectedSpots}
           />
         </LeftContentsWrapper>
-        <ResizePanel direction="w" style={{ width: "5000px" }}>
-          <FavoriteSpots
-            selectedYear={selectedYear}
-            selectedFruit={selectedFruit}
-            spots={selectedSpots}
-            setSelectedSpots={setSelectedSpots}
-          />
-        </ResizePanel>
+        <RightContentsWrapper>
+          <ResizePanel
+            direction="w"
+            style={{ minWidth: "250px", width: "100%", height: "100%" }}
+          >
+            <FavoriteSpots
+              selectedYear={selectedYear}
+              selectedFruit={selectedFruit}
+              spots={selectedSpots}
+              setSelectedSpots={setSelectedSpots}
+            />
+          </ResizePanel>
+        </RightContentsWrapper>
       </ContentsWrapper>
     </Wrapper>
   );
