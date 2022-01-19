@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
+import ResizePanel from "react-resize-panel";
 import axios from "axios";
 import styled from "styled-components";
 import XLSX from "xlsx";
@@ -69,13 +70,18 @@ const Button = styled.button`
 `;
 
 const LeftContentsWrapper = styled.div`
-  width: 500px;
+  width: 100%;
 `;
 
 const RightContentsWrapper = styled.div`
-  width: 80%;
   box-sizing: border-box;
   padding-left: 10px;
+`;
+
+const textBox = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: red;
 `;
 
 function App() {
@@ -94,6 +100,11 @@ function App() {
   const [fireblightSpots, setFireblightSpots] = useState([]);
   const [stationsData, setStationsData] = useState([]);
   const [stationSpots, setStationSpots] = useState([]);
+  const [mapWidth, setMapWidth] = useState(500);
+  const [dragging, setDragging] = useState(false);
+  const [size, setSize] = useState({ x: 500, y: 300 });
+
+  const mapComponentRef = React.createRef();
 
   const getFBStatus = (data) => {
     let result = 0;
@@ -151,6 +162,10 @@ function App() {
       });
   };
 
+  const onChangeSize = () => {
+    console.log("onChangeSize");
+  };
+
   useEffect(() => {
     stations.map((station) => {
       setStationSpots([]);
@@ -198,14 +213,14 @@ function App() {
             addSelectedSpots={setSelectedSpots}
           />
         </LeftContentsWrapper>
-        <RightContentsWrapper>
+        <ResizePanel direction="w" style={{ width: "5000px" }}>
           <FavoriteSpots
             selectedYear={selectedYear}
             selectedFruit={selectedFruit}
             spots={selectedSpots}
             setSelectedSpots={setSelectedSpots}
           />
-        </RightContentsWrapper>
+        </ResizePanel>
       </ContentsWrapper>
     </Wrapper>
   );
