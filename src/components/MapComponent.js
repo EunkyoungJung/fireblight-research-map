@@ -159,7 +159,7 @@ const MapComponent = (props) => {
                     spot.fbStatus
                       ? statusColors[spot.fbStatus]
                       : statusColors[0],
-                    spot.name ? spot.name : "-",
+                    spot.id ? spot.id : "-",
                     selectedSpots.filter((item) => item.id == spot.id).length >
                       0
                       ? true

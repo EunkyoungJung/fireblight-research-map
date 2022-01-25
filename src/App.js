@@ -94,6 +94,7 @@ function App() {
 
   const [fireblightSpots, setFireblightSpots] = useState([]);
   const [stationsData, setStationsData] = useState([]);
+  const [totalStations, setTotalStations] = useState([]);
   const [stationSpots, setStationSpots] = useState([]);
   const [mapWidth, setMapWidth] = useState(500);
   const [dragging, setDragging] = useState(false);
@@ -101,59 +102,75 @@ function App() {
 
   const mapComponentRef = React.createRef();
 
-  const getFBStatus = (data) => {
-    let result = 0;
-    for (const item of data) {
-      if (item.bbs | item.cms | item.cbs | item.sbs) {
-        result = 5;
-        break;
-      }
-      if (item.bir & (item.bir > result)) {
-        result = item.bir;
-      }
-    }
-    return result;
-    // let result = data.reduce((acc, cur) => {
-    //   if (cur.bbs | cur.cms | cur.cbs | cur.sbs) {
-    //     return 5;
-    //   }
-    //   if (cur.bir & (acc < cur.bir)) {
-    //     return cur.bir;
-    //   }
-    //   return acc;
-    // }, 0);
+  // const getFBStatus = (data) => {
+  //   let result = 0;
+  //   for (const item of data) {
+  //     if (item.bbs | item.cms | item.cbs | item.sbs) {
+  //       result = 5;
+  //       break;
+  //     }
+  //     if (item.bir & (item.bir > result)) {
+  //       result = item.bir;
+  //     }
+  //   }
+  //   return result;
+  // };
 
-    // return result;
-  };
+  // const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
+  //   const begin = `${selectedYear}-01-01`;
+  //   const until = `${selectedYear}-12-31`;
+  //   await axios
+  //     .get(
+  //       `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit}&lon=${station.lon}&lat=${station.lat}&format=json`
+  //       // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
+  //     )
+  //     .then((response) => {
+  //       const data = response.data;
+  //       // 전체 데이터중 가장 높은 꽃감염위험도 추출
+  //       let stationBirs = [];
+  //       let fbStatus = getFBStatus(data);
+  //       let maxBir = 0;
+  //       stationBirs = data.filter((item) => item.bir != null);
+  //       if (stationBirs.length > 0) {
+  //         maxBir = Math.max(
+  //           ...data.filter((item) => item.bir != null).map((item) => item.bir)
+  //         );
+  //       }
+  //       let newStation = {
+  //         ...station,
+  //         fbStatus: fbStatus,
+  //         maxBir: maxBir,
+  //       };
+  //       const currentData = stationSpots;
+  //       currentData.push(newStation);
+  //       setStationSpots([...currentData]);
+  //     });
+  // };
 
-  const GetFBSpotData = async (station, selectedYear, selectedFruit) => {
+  const updateTotalStations = async (selectedYear, selectedFruit) => {
     const begin = `${selectedYear}-01-01`;
     const until = `${selectedYear}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit}&lon=${station.lon}&lat=${station.lat}&format=json`
+        `https://fireblight.org/fireblight/getStations?year=${selectedYear}&plant=${selectedFruit}`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
         const data = response.data;
-        // 전체 데이터중 가장 높은 꽃감염위험도 추출
-        let stationBirs = [];
-        let fbStatus = getFBStatus(data);
-        let maxBir = 0;
-        stationBirs = data.filter((item) => item.bir != null);
-        if (stationBirs.length > 0) {
-          maxBir = Math.max(
-            ...data.filter((item) => item.bir != null).map((item) => item.bir)
-          );
-        }
-        let newStation = {
-          ...station,
-          fbStatus: fbStatus,
-          maxBir: maxBir,
-        };
-        const currentData = stationSpots;
-        currentData.push(newStation);
-        setStationSpots([...currentData]);
+        const result = data.map((item) => {
+          const coords = item.coords.split(",");
+          return {
+            id: item.st_id,
+            code: item.code,
+            name: item.name,
+            type: item.type,
+            lon: parseFloat(coords[0]),
+            lat: parseFloat(coords[1]),
+            fbStatus: item.status,
+            latestDate: item.recent_tm,
+          };
+        });
+        setTotalStations(result);
       });
   };
 
@@ -163,10 +180,9 @@ function App() {
 
   useEffect(() => {
     stations.map((station) => {
-      setStationSpots([]);
-      GetFBSpotData(station, selectedYear, selectedFruit);
+      updateTotalStations(selectedYear, selectedFruit);
     });
-  }, [selectedYear, selectedFruit, stations]);
+  }, [selectedYear, selectedFruit]);
 
   return (
     <Wrapper>
@@ -202,7 +218,7 @@ function App() {
       <ContentsWrapper>
         <LeftContentsWrapper>
           <MapComponent
-            spots={stationSpots}
+            spots={totalStations}
             fireblightSpots={fireblightSpots}
             selectedSpots={selectedSpots}
             addSelectedSpots={setSelectedSpots}
