@@ -14,6 +14,7 @@ import FileUploader from "./components/FileUploader";
 import AppleOrPearToggleButton from "./components/AppleOrPearTobbleButton";
 import stations from "./data/station.json";
 import fbSpots from "./data/fireblightSpots.json";
+import provinces from "./data/provinceData.json";
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,8 +81,17 @@ const RightContentsWrapper = styled.div`
 `;
 
 function App() {
-  const [selectedYear, setSelectedYear] = useState(2021);
-  const [selectedFruit, setSelectedFruit] = useState("apple");
+  const [selectedYear, setSelectedYear] = useState({
+    id: 2021,
+    value: 2021,
+    name: "2021년",
+  });
+  const [selectedFruit, setSelectedFruit] = useState({
+    id: "apple",
+    value: "apple",
+    name: "사과",
+  });
+  const [selectedProvince, setSelectedProvince] = useState({ ...provinces[0] });
   const [selectedSpots, setSelectedSpots] = useState([]);
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -152,7 +162,7 @@ function App() {
     const until = `${selectedYear}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getStations?year=${selectedYear}&plant=${selectedFruit}`
+        `https://fireblight.org/fireblight/getStations?year=${selectedYear.value}&plant=${selectedFruit.value}`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
@@ -190,14 +200,25 @@ function App() {
         <ServiceTitle />
         <MenuWrapper>
           <SelectComponent
-            selectOption={selectedFruit}
+            selectedOption={selectedFruit}
             onChangeOption={setSelectedFruit}
-            options={["apple", "pear"]}
+            options={[
+              { id: "apple", value: "apple", name: "사과" },
+              { id: "pear", value: "pear", name: "배" },
+            ]}
           />
           <SelectComponent
-            selectOption={selectedYear}
+            selectedOption={selectedYear}
             onChangeOption={setSelectedYear}
-            options={[2021, 2022]}
+            options={[
+              { id: 2021, value: 2021, name: "2021년" },
+              { id: 2022, value: 2022, name: "2022년" },
+            ]}
+          />
+          <SelectComponent
+            selectedOption={selectedProvince.id}
+            onChangeOption={setSelectedProvince}
+            options={provinces}
           />
           {/* <Button onClick={openModal}>화상병 발생 지점 등록</Button> */}
           {modalVisible && (
@@ -222,6 +243,7 @@ function App() {
             fireblightSpots={fireblightSpots}
             selectedSpots={selectedSpots}
             addSelectedSpots={setSelectedSpots}
+            selectedProvince={selectedProvince}
           />
         </LeftContentsWrapper>
         <RightContentsWrapper>

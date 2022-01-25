@@ -124,11 +124,11 @@ const FireBlightReport = (props) => {
   };
 
   const GetFBSpotData = async (spot, selectedFruit, selectedYear) => {
-    const begin = `${selectedYear}-01-01`;
-    const until = `${selectedYear}-12-31`;
+    const begin = `${selectedYear.value}-01-01`;
+    const until = `${selectedYear.value}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit}&lon=${spot.lon}&lat=${spot.lat}&format=json`
+        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit.value}&lon=${spot.lon}&lat=${spot.lat}&format=json`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
@@ -153,15 +153,14 @@ const FireBlightReport = (props) => {
       <Contents>
         <CloseButtonWrapper
           onClick={(e) => {
-            console.log(e.target);
             deleteSpot(spot.id);
           }}
         >
           <CloseButton />
         </CloseButtonWrapper>
         <Title>
-          {selectedYear ? selectedYear : ""}{" "}
-          {selectedFruit ? fruitTitle[selectedFruit] : ""} 화상병 예측{" "}
+          {selectedYear ? selectedYear.value : ""}{" "}
+          {selectedFruit ? fruitTitle[selectedFruit.value] : ""} 화상병 예측{" "}
           {spot && spot.name ? `(${spot.name})` : ""}
         </Title>
         {/* <div>

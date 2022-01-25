@@ -30,16 +30,20 @@ const SelectComponent = (props) => {
       <Select
         defaultValue={selectedOption}
         onChange={(e) => {
-          onChangeOption(e.target.value);
+          const targetItemId = e.target.value;
+          const targetItem = options.filter(
+            (item) => item.id == targetItemId
+          )[0];
+          onChangeOption({ ...targetItem });
         }}
       >
         {options.map((item, index) => (
           <option
-            defaultValue={item == selectedOption ? true : false}
-            key={index}
-            value={item}
+            defaultValue={item.id == selectedOption.id ? true : false}
+            key={item.id}
+            value={item.id}
           >
-            {item}
+            {item.name}
           </option>
         ))}
       </Select>

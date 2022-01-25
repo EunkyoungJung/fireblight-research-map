@@ -55,7 +55,13 @@ const statusColors = {
 
 const MapComponent = (props) => {
   const MaxMarkerSelectCount = 4;
-  const { spots, fireblightSpots, addSelectedSpots, selectedSpots } = props;
+  const {
+    spots,
+    fireblightSpots,
+    addSelectedSpots,
+    selectedSpots,
+    selectedProvince,
+  } = props;
   const [selectedMarker, setSelectedMarker] = useState([]);
   const [visibleFireblightSpots, setVisibleFireblightSpots] = useState(false);
   const [fbSpotInfo, setFbSpotInfo] = useState([]);
@@ -85,25 +91,10 @@ const MapComponent = (props) => {
     if (MaxMarkerSelectCount > selectedSpots.length) {
       isSelectable = true;
     }
-
-    if (!isExist && isSelectable) {
-      addSelectedSpots([...selectedSpots, e.target.options.data]);
-      return;
-    }
-    if (isExist) {
-      const result = window.confirm(
-        "이미 선택한 지점입니다. 선택을 해제하겠습니까?"
-      );
-      if (result) {
-        addSelectedSpots(
-          selectedSpots.filter((item) => item.id != e.target.options.data.id)
-        );
-      }
-      return;
-    }
     if (!isSelectable) {
       alert("최대 4곳까지 선택가능합니다.");
     }
+    addSelectedSpots([...selectedSpots, { ...target }]);
   };
 
   const onClickFBMarker = (e) => {
@@ -129,8 +120,12 @@ const MapComponent = (props) => {
           : "화상별 발생 지점 숨기기"}
       </ToggleButton> */}
       <Map
-        center={[35.9078, 127.7669]}
-        zoom={7.45}
+        center={
+          selectedProvince
+            ? [selectedProvince.center.lat, selectedProvince.center.lon]
+            : [35.9078, 127.7669]
+        }
+        zoom={11}
         minZoom={7} // 줌을 줄여도 한국지도가 나오도록
         style={{ width: "100%" }}
         // onClick={onClickMap}
@@ -147,7 +142,7 @@ const MapComponent = (props) => {
           ? spots.map((spot, idx) => (
               <Marker
                 data={spot}
-                key={idx}
+                key={spot.id}
                 onClick={(e) => {
                   onClickStationMarker(e);
                 }}
