@@ -90,7 +90,7 @@ const MapComponent = (props) => {
       alert("이미 선택한 지점입니다.");
       return;
     }
-    if (MaxMarkerSelectCount < selectedSpots.length) {
+    if (MaxMarkerSelectCount <= selectedSpots.length) {
       isSelectable = false;
       alert("최대 4곳까지 선택가능합니다.");
       return;
