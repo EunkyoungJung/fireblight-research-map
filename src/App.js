@@ -32,8 +32,6 @@ const Wrapper = styled.div`
 
 const NavWrapper = styled.div`
   width: 100%;
-  display: flex;
-  align-items: center;
 `;
 
 const MenuWrapper = styled.div`
