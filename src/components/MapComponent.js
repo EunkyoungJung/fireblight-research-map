@@ -83,16 +83,17 @@ const MapComponent = (props) => {
   const onClickStationMarker = (e) => {
     const target = e.target.options.data;
     let isExist = false;
-    let isSelectable = false;
-    // 이미한 지점여부 체크
+    let isSelectable = true;
+    // 이미 선택한 지점여부 체크
     if (selectedSpots.filter((item) => item.id == target.id).length > 0) {
       isExist = true;
+      alert("이미 선택한 지점입니다.");
+      return;
     }
-    if (MaxMarkerSelectCount > selectedSpots.length) {
-      isSelectable = true;
-    }
-    if (!isSelectable) {
+    if (MaxMarkerSelectCount < selectedSpots.length) {
+      isSelectable = false;
       alert("최대 4곳까지 선택가능합니다.");
+      return;
     }
     addSelectedSpots([...selectedSpots, { ...target }]);
   };
