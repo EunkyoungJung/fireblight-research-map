@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/fireblight-research-map/precache-manifest.93e8a14217191ee9586ef2957c95316d.js"
+  "/fireblight-research-map/precache-manifest.36f7094716f458d18d11358d6b5ffda5.js"
 );
 
 self.addEventListener('message', (event) => {
