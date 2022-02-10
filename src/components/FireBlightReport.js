@@ -126,20 +126,24 @@ const FireBlightReport = (props) => {
   const GetFBSpotData = async (spot, selectedFruit, selectedYear) => {
     const begin = `${selectedYear.value}-01-01`;
     const until = `${selectedYear.value}-12-31`;
-    await axios
-      .get(
-        `https://fireblight.org/fireblight/getListMaryblyts?begin=${begin}&until=${until}&plant=${selectedFruit.value}&lon=${spot.lon}&lat=${spot.lat}&format=json`
-        // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
-      )
-      .then((response) => {
-        const data = response.data;
-        setSucess(true);
-        setFireblightDailyReports(data);
-        setBbs(data.filter((item) => item.bbs !== null));
-        setCms(data.filter((item) => item.cms !== null));
-        setCbs(data.filter((item) => item.cbs !== null));
-        setSbs(data.filter((item) => item.sbs !== null));
-      });
+
+    try {
+      await axios
+        .get(
+          `https://fireblight.org/fireblight/getMaryblyt?begin=${begin}&until=${until}&plant=${selectedFruit.value}&lon=${spot.lon}&lat=${spot.lat}&format=json`
+          // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
+        )
+        .then((response) => {
+          const data = response.data;
+          setSucess(true);
+          setFireblightDailyReports(data);
+          setBbs(data.filter((item) => item.bbs !== null));
+          setCms(data.filter((item) => item.cms !== null));
+          setCbs(data.filter((item) => item.cbs !== null));
+        });
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

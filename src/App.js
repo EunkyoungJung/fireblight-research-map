@@ -160,7 +160,7 @@ function App() {
     const until = `${selectedYear}-12-31`;
     await axios
       .get(
-        `https://fireblight.org/fireblight/getStations?year=${selectedYear.value}&plant=${selectedFruit.value}`
+        `https://fireblight.org/fireblight/getMaryblyts?year=${selectedYear.value}&plant=${selectedFruit.value}`
         // "https://fireblight.org/fireblight/getListMaryblyts?begin=2021-04-10&until=2021-04-10&plant=apple&lon=127.7669&lat=35.9078&format=json"
       )
       .then((response) => {
